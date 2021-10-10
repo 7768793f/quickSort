@@ -12,33 +12,38 @@ print(sList)
 print(bList)
 print("PIVOT IS:", pivotVal)
 
-sIndex = 0      #declaring variables that need to be global
-smallToBig = "null"
-bIndex = 0
-bigToSmall = "null"
 sListDone = False
 bListDone = False
 i = 0
 y = 0
-
 while sListDone != True or bListDone != True:
-    if smallToBig == "null":
-        for i in range (i, len(sList)):
-            if sList[i] > pivotVal:
-                smallToBig = sList[i]
-                sIndex = i
-                print("s", smallToBig)
-            elif i == len(sList):
-                sListDone = True
-    if bigToSmall == "null":
-        for y in range (y, len(bList)):
-            if bList[y] < pivotVal:
-                bigToSmall = bList[y]
-                bIndex = y
-                print("b", bigToSmall)
-            elif y == len(bList):
-                bListDone = True
-    unsorted[sIndex] = bigToSmall                  #swapping numbers
-    unsorted[bIndex+len(sList)] = smallToBig
+    for i in range (i, len(sList)):
+        if sList[i] > pivotVal:
+            smallToBig = sList[i]
+            sIndex = i
+            print("s", smallToBig)
+            sList.pop(sIndex)
+            bList.append(smallToBig)
+            print(sList)
+            print(bList)
+            break
+        elif i == len(sList):
+            sListDone = True
+    for y in range (y, len(bList)):
+        if bList[y] < pivotVal:
+            bigToSmall = bList[y]
+            bIndex = y
+            print("b", bigToSmall)
+            bList.pop(bIndex)
+            sList.append(bigToSmall)
+            print(sList)
+            print(bList)
+            break
+        elif y == len(bList):
+            bListDone = True
+print(sList)
+print(bList)
+    #unsorted[sIndex] = bigToSmall                  #swapping numbers
+    #unsorted[bIndex+len(sList)] = smallToBig
     #print(unsorted)
     #print(big, "Is the big value that has been swapped with", small)
